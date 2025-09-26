@@ -1,45 +1,388 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tejasvi Pal - Machine Learning Engineer</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tejasvi Pal | ML Engineer</title>
+  <meta name="description" content="Tejasvi — ML Engineer portfolio: About, Credentials, Projects, Blog, and Contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config for color palette tweaks
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui']},
+          colors: {
+            brand: {
+              50:'#f9fafb',100:'#f3f4f6',200:'#e5e7eb',300:'#d1d5db',400:'#9ca3af',
+              500:'#6b7280',600:'#4b5563',700:'#374151',800:'#1f2937',900:'#111827'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px -10px rgba(0,0,0,0.15)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    /* Theme (light/dark) */
+    :root { --bg: 255 255 255; --fg: 17 24 39; --muted: 107 114 128; --card: 249 250 251; }
+    .dark :root, .dark { --bg: 17 24 39; --fg: 229 231 235; --muted: 156 163 175; --card: 31 41 55; }
+    body { background: rgb(var(--bg)); color: rgb(var(--fg)); }
+    .card { background: rgb(var(--card)); }
+    /* Fancy underline */
+    .link-underline { background-image: linear-gradient(transparent,transparent),linear-gradient(currentColor,currentColor); background-size: 0 2px,100% 2px; background-position: 0 100%,0 100%; background-repeat: no-repeat; transition: background-size .3s ease; }
+    .link-underline:hover { background-size: 100% 2px,100% 2px; }
+  </style>
 </head>
-<body>
-
-    <header class="text-center text-white">
-        <div class="container">
-            <h1>Hi, I'm Tejasvi Pal</h1>
-            <h2>Machine Learning Engineer</h2>
-            <a href="#contact" class="btn btn-warning mt-3">WORK WITH ME</a>
+<body class="font-sans">
+  <!-- Header / Nav -->
+  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-black/30 border-b border-black/5 dark:border-white/5">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between py-3">
+        <a href="#top" class="flex items-center gap-2 font-semibold text-lg">
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brand-500 text-white">T</span>
+          <span>Tejasvi</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#about" class="hover:text-brand-600 link-underline">About</a>
+          <a href="#credentials" class="hover:text-brand-600 link-underline">Credentials</a>
+          <a href="#projects" class="hover:text-brand-600 link-underline">Projects</a>
+          <a href="#blog" class="hover:text-brand-600 link-underline">Blog</a>
+          <a href="#contact" class="hover:text-brand-600 link-underline">Get in touch</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" class="rounded-xl border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm hover:bg-black/5 dark:hover:bg-white/10" aria-label="Toggle theme">🌙</button>
+          <button id="menuBtn" class="md:hidden rounded-xl border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm">Menu</button>
         </div>
-    </header>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-black/5 dark:border-white/10">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#about" class="hover:text-brand-600">About</a>
+        <a href="#credentials" class="hover:text-brand-600">Credentials</a>
+        <a href="#projects" class="hover:text-brand-600">Projects</a>
+        <a href="#blog" class="hover:text-brand-600">Blog</a>
+        <a href="#contact" class="hover:text-brand-600">Get in touch</a>
+      </div>
+    </div>
+  </header>
 
-    <section id="about" class="container text-center text-white">
-        <h2>About Me</h2>
-        <p>Hey there! I'm Tejasvi (pronounced Tej-asvee), a Machine Learning & Infrastructure Engineer passionate about building intelligent systems that drive real-world impact.</p>
-        <p>By day, I engineer scalable ML solutions, and by night, you’ll find me composing music, venturing into creative fields, or diving into the latest tech trends.</p>
-    </section>
+  <!-- Hero -->
+  <section id="top" class="relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 pt-16 pb-10 grid md:grid-cols-2 items-center gap-10">
+      <div>
+        <p class="text-sm tracking-widest uppercase text-brand-600 font-semibold">ML Engineer • MSCS (AI) @ Georgia Tech</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold mt-3 leading-tight">Building reliable ML systems & delightful data products</h1>
+        <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-xl">I design, automate, and scale machine learning platforms on Azure, and I love shipping things that are fast, robust, and actually useful.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-4 py-2 font-medium shadow-soft hover:bg-brand-700">View Projects</a>
+          <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-black/10 dark:border-white/10 px-4 py-2 font-medium hover:bg-black/5 dark:hover:bg-white/10">Get in touch</a>
+        </div>
+      </div>
+      <div class="relative space-y-6 md:space-y-8">
+        <!-- Profile photo (top right on large screens) -->
+        <figure class="flex md:justify-end">
+          <img src="IMG_2978.jpg" alt="Tejasvi portrait" class="w-40 h-40 md:w-[14rem] md:h-[21rem] rounded-full object-cover border border-black\/10 dark:border-white\/10 shadow-soft"/>
+        </figure>
+        <!-- Skill tiles -->
+        <div class="card rounded-2xl p-6 shadow-soft">
+          <ul class="grid grid-cols-2 gap-4 text-sm">
+            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">Cloud</span><span class="font-semibold">Azure, ADF, AML</span></li>
+            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">Data</span><span class="font-semibold">Spark, Databricks</span></li>
+            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">ML</span><span class="font-semibold">Sklearn, PyTorch, Tensorflow</span></li>
+            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">Ops</span><span class="font-semibold">Docker, CI/CD</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="credentials" class="container text-center text-white">
-        <h2>Credentials</h2>
-        <ul class="list-unstyled">
-            <li>🎓 BS Computer Science - Wilfrid Laurier University</li>
-            <li>📚 MS Computer Science - Georgia Institute of Technology (2023 - Present)</li>
-        </ul>
-        <h3>Skills</h3>
-        <p>Machine Learning, Automation, Infrastructure Engineering</p>
-    </section>
+  <!-- About -->
+  <section id="about" class="py-16 border-t border-black/5 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-10 items-start">
+      <div class="md:col-span-1">
+        <h2 class="text-2xl font-bold">About Me</h2>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">Quick snapshot of who I am and what I enjoy working on.</p>
+      </div>
+      <div class="md:col-span-2">
+        <div class="card rounded-2xl p-6 shadow-soft">
+          <p>Hi! I’m Tejasvi, a Toronto-based ML Platform Engineer pursuing an MSCS in Artificial Intelligence. I’ve built Azure and Databricks‑based pipelines, automated secrets and deployments, and partnered with data science teams to productionize models safely. Outside work, I’m into DJing, karaoke, and building quirky ML tools.</p>
+          <ul class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
+            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Currently:</strong> ML Platform Engineer @ Canada Life</li>
+            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Degree:</strong> BSc CS (WLU), OMSCS (GT)</li>
+            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Looking for:</strong> Bay Area ML Eng roles</li>
+            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Interests:</strong> MLOps, recommender systems, reliability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="container text-center text-white">
-        <h2>Get in Touch</h2>
-        <p>Email: <a href="mailto:tejasvi.pal29@gmail.com" class="text-warning">tejasvi.pal29@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/tejasvi-pal/" class="text-warning" target="_blank">linkedin.com/in/tejasvi-pal/</a></p>
-    </section>
+  <!-- Credentials -->
+  <section id="credentials" class="py-16 border-t border-black/5 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl font-bold">Credentials</h2>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">Education & experience</p>
+        </div>
+        <div class="md:col-span-2">
+          <div class="space-y-4" id="credentials-accordion">
+            <!-- Item 1 -->
+            <details class="group card rounded-2xl p-5 shadow-soft" open>
+              <summary class="cursor-pointer list-none flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">ML Platform Engineer - Canada Life</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">2024 — Present • Toronto, ON</p>
+                </div>
+                <span class="text-xl transition group-open:rotate-180">⌄</span>
+              </summary>
+              <ul class="mt-4 list-disc pl-5 text-sm space-y-2">
+                <li>Automated Databricks Secrets & pipeline deployments via CI/CD (Gitlab, ADF).</li>
+                <li>Productionized models with monitoring, alerting, and rollback strategies.</li>
+                <li>Partnered with DS to reduce training runtime 40% via Spark tuning & caching.</li>
+              </ul>
+            </details>
+            <!-- Item 2 -->
+            <details class="group card rounded-2xl p-5 shadow-soft">
+              <summary class="cursor-pointer list-none flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">M.S. Computer Science (ML) - Georgia Tech (OMSCS)</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">2023 — Present • Specialization: Artificial Intelligence</p>
+                </div>
+                <span class="text-xl transition group-open:rotate-180">⌄</span>
+              </summary>
+              <ul class="mt-4 list-disc pl-5 text-sm space-y-2">
+                <li>Courses: ML for Trading, Cognitive Science, AI Ethics & Society, NLP, KBAI.</li>
+                <li>Projects: Spotify subgenre discovery (EM, K‑Means, PCA/ICA), Analogical Reasoning Assistant.</li>
+              </ul>
+            </details>
+            <!-- Item 3 -->
+            <details class="group card rounded-2xl p-5 shadow-soft">
+              <summary class="cursor-pointer list-none flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold">B.Sc. Computer Science - Wilfrid Laurier University</h3>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">2016 — 2020 • Co‑op</p>
+                </div>
+                <span class="text-xl transition group-open:rotate-180">⌄</span>
+              </summary>
+              <ul class="mt-4 list-disc pl-5 text-sm space-y-2">
+                <li>Developed an automated system for handwriting detection</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+  <!-- Projects -->
+  <section id="projects" class="py-16 border-t border-black/5 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-bold">Projects</h2>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">Filterable gallery with quick previews.</p>
+        </div>
+        <div class="flex items-center gap-2 text-sm">
+          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="all">All</button>
+          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="ml">ML</button>
+          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="mlops">MLOps</button>
+          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="data">Data</button>
+        </div>
+      </div>
+
+      <div id="projectsGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project cards (duplicate pattern and adjust data-tags) -->
+        <article class="project card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10" data-tags="ml mlops">
+          <h3 class="font-semibold">Analogical Reasoning Assistant</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Structure mapping (NetworkX, Streamlit) matching cross‑domain analogies; evaluated with structural overlap & P@3.</p>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Python</span>
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">NetworkX</span>
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Streamlit</span>
+          </div>
+          <div class="mt-4 flex gap-2">
+            <a class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-3 py-1.5 text-sm" href="#" onclick="openModal('Analogical Reasoning Assistant','Cross‑domain analogy matcher with structure mapping; demoed with circuits↔water systems.');return false;">Preview</a>
+            <a class="inline-flex items-center justify-center rounded-xl border px-3 py-1.5 text-sm" target="_blank" href="https://github.com/">Code</a>
+          </div>
+        </article>
+
+        <article class="project card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10" data-tags="mlops data">
+          <h3 class="font-semibold">Databricks Secrets Automation</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">GitHub Actions + ADF pipelines to sync secrets and orchestrate deployments safely.</p>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">GitHub Actions</span>
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">ADF</span>
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Databricks</span>
+          </div>
+          <div class="mt-4 flex gap-2">
+            <a class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-3 py-1.5 text-sm" href="#" onclick="openModal('Databricks Secrets Automation','CI/CD to provision & rotate secrets across workspaces; reduced manual ops and drift.');return false;">Preview</a>
+            <a class="inline-flex items-center justify-center rounded-xl border px-3 py-1.5 text-sm" target="_blank" href="https://github.com/">Code</a>
+          </div>
+        </article>
+
+        <article class="project card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10" data-tags="ml data">
+          <h3 class="font-semibold">Spotify Subgenre Discovery</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Unsupervised learning (EM, K‑Means, PCA/ICA) to uncover latent subgenres from audio features.</p>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">EM</span>
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">K‑Means</span>
+            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">PCA/ICA</span>
+          </div>
+          <div class="mt-4 flex gap-2">
+            <a class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-3 py-1.5 text-sm" href="#" onclick="openModal('Spotify Subgenre Discovery','Clustered thousands of tracks; evaluated cluster quality and surfaced exemplar songs.');return false;">Preview</a>
+            <a class="inline-flex items-center justify-center rounded-xl border px-3 py-1.5 text-sm" target="_blank" href="https://github.com/">Code</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="py-16 border-t border-black/5 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-bold">Blog</h2>
+          <p class="mt-2 text-gray-600 dark:text-gray-300">Recent posts and thoughts.</p>
+        </div>
+      </div>
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <article class="card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10">
+          <p class="text-xs uppercase tracking-widest text-brand-600 font-semibold">MLOps</p>
+          <h3 class="mt-2 font-semibold">My two cents on the current state of AI</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Are we getting overdependent on AI?</p>
+          <a href="#" class="mt-3 inline-block text-sm link-underline">Read more →</a>
+        </article>
+        <article class="card rounded-2xl p-5 shadow-soft border border-black/5 dark;border-white/10">
+          <p class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Projects</p>
+          <h3 class="mt-2 font-semibold">Discovering Spotify subgenres</h3>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">A short write‑up of results and what surprised me.</p>
+          <a href="#" class="mt-3 inline-block text-sm link-underline">Read more →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 border-t border-black/5 dark:border-white/10">
+    <div class="mt-6 text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2 justify-center">
+        <span>Message me on</span>
+        <a class="flex items-center gap-1 link-underline" href="https://www.linkedin.com/in/tejasvi-pal" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.94H4.7V24H.22V8.94zM8.53 8.94h4.27v2.05h.06c.59-1.12 2.03-2.3 4.18-2.3 4.47 0 5.3 2.94 5.3 6.77V24h-4.48v-7.69c0-1.83-.03-4.18-2.55-4.18-2.55 0-2.94 1.99-2.94 4.05V24H8.53V8.94z"/></svg>
+          
+        </a>
+      </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-black/5 dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm">
+      <p>© <span id="year"></span> Tejasvi. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a class="link-underline" href="#">GitHub</a>
+        <a class="link-underline" href="#">LinkedIn</a>
+        <a class="link-underline" href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/50" onclick="closeModal()"></div>
+    <div class="relative card rounded-2xl max-w-lg w-full p-6 shadow-soft border border-black/5 dark:border-white/10">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 id="modalTitle" class="text-xl font-semibold"></h3>
+          <p id="modalDesc" class="mt-2 text-sm text-gray-600 dark:text-gray-300"></p>
+        </div>
+        <button onclick="closeModal()" class="ml-4 rounded-xl border px-3 py-1.5">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Persisted theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const setTheme = (mode) => {
+      if (mode === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', mode);
+      themeToggle.textContent = mode === 'dark' ? '☀️' : '🌙';
+    };
+    (function initTheme(){
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(saved || (prefersDark ? 'dark' : 'light'));
+    })();
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+
+    // Projects filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projects = document.querySelectorAll('.project');
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('bg-brand-600','text-white'));
+      btn.classList.add('bg-brand-600','text-white');
+      const tag = btn.dataset.filter;
+      projects.forEach(card => {
+        const tags = card.dataset.tags.split(' ');
+        const show = tag === 'all' || tags.includes(tag);
+        card.classList.toggle('hidden', !show);
+      });
+    }));
+
+    // Modal helpers
+    window.openModal = (title, desc) => {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDesc').textContent = desc;
+      const m = document.getElementById('modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    };
+    window.closeModal = () => {
+      const m = document.getElementById('modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    };
+
+    // Contact form (mailto fallback demo)
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const copy = document.getElementById('copy').checked;
+      const status = document.getElementById('formStatus');
+
+      // Simple front-end only submit via mailto (replace with Formspree or backend later)
+      const to = 'hello@example.com'; // TODO: replace with your email
+      const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+      const link = `mailto:${to}?subject=${subject}&body=${body}`;
+      window.location.href = link;
+      status.textContent = 'Opening your email client…';
+      if (copy) status.textContent += ' (You selected to receive a copy.)';
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

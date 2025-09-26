@@ -1,7 +1,17 @@
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth' });
-    });
-});
+// tailwind-config.js
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+      colors: {
+        brand: {
+          50:'#f9fafb',100:'#f3f4f6',200:'#e5e7eb',300:'#d1d5db',400:'#9ca3af',
+          500:'#6b7280',600:'#4b5563',700:'#374151',800:'#1f2937',900:'#111827'
+        }
+      },
+      boxShadow: {
+        soft: '0 10px 30px -10px rgba(0,0,0,0.15)'
+      }
+    }
+  }
+};

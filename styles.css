@@ -1,31 +1,19 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1e1e1e, #333, #121212);
-    margin: 0;
-    padding: 0;
-    color: white;
-}
+/* style.css */
+html { scroll-behavior: smooth; }
 
-header {
-    padding: 80px 20px;
-    background: rgba(0, 0, 0, 0.7);
-}
+/* Theme (light/dark) via CSS variables */
+:root { --bg: 255 255 255; --fg: 17 24 39; --muted: 107 114 128; --card: 249 250 251; }
+.dark :root, .dark { --bg: 17 24 39; --fg: 229 231 235; --muted: 156 163 175; --card: 31 41 55; }
 
-h1 {
-    font-size: 2.5em;
-    font-weight: bold;
-}
+body { background: rgb(var(--bg)); color: rgb(var(--fg)); }
+.card { background: rgb(var(--card)); }
 
-h2 {
-    font-size: 1.8em;
-    color: #ff9800;
+/* Fancy underline shared utility */
+.link-underline {
+  background-image: linear-gradient(transparent,transparent),linear-gradient(currentColor,currentColor);
+  background-size: 0 2px,100% 2px;
+  background-position: 0 100%,0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .3s ease;
 }
-
-.btn-warning {
-    font-weight: bold;
-    padding: 10px 20px;
-}
-
-section {
-    padding: 50px 20px;
-}
+.link-underline:hover { background-size: 100% 2px,100% 2px; }
