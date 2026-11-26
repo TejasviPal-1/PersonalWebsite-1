@@ -160,6 +160,19 @@ nav a.cur{text-decoration:underline;text-underline-offset:5px;text-decoration-th
 .static.mobile-intro .name-intro strong{display:block;max-width:100%;font-size:clamp(64px,18vw,160px);line-height:.9;text-align:center;will-change:transform;transform-origin:center}
 .static.mobile-intro .name-intro small{bottom:32px}
 @media(prefers-reduced-motion:reduce){.static.mobile-intro .name-intro{display:none}}
+@media(max-width:1024px), (any-pointer:coarse){
+.reel .eng{display:block}
+.reel .eng>.col{margin-bottom:32px}
+.reel .tl{width:100%;min-width:0;padding-left:28px;box-sizing:border-box;gap:32px}
+.reel .job{padding-left:0;min-width:0}
+.reel .job .dot{left:-28px}
+.reel .org{overflow-wrap:anywhere}
+.reel #engineering h2{font-size:clamp(36px,10.5vw,64px)!important}
+.reel .name-intro strong{font-size:clamp(64px,20vw,160px);max-width:90vw;text-align:center}
+.reel .shot{padding-top:116px;padding-bottom:48px}
+.reel .hero .xl{font-size:clamp(64px,21vw,84px)}
+.reel nav a{min-height:32px;display:inline-flex;align-items:center}
+}
 </style>
 </head>
 <body>
@@ -317,33 +330,11 @@ const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',
 document.querySelectorAll('[data-fx=words]').forEach(p => {
   p.innerHTML = p.textContent.trim().split(/(\s+)/).map(x => /^\s+$/.test(x) ? ' ' : '<span class="w">' + esc(x) + '</span>').join('');
 });
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width: 1024px), (any-pointer: coarse)').matches;
-if (reduce) {
-  root.classList.add('static');
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    root.classList.add('mobile-intro');
-    const intro = document.querySelector('.name-intro');
-    const title = intro.querySelector('strong');
-    const hint = intro.querySelector('small');
-    let pending = false;
-    const paintIntro = () => {
-      pending = false;
-      const rect = intro.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height)));
-      title.style.transform = 'translateY(' + (-24 * progress) + 'px) scale(' + (1 - .32 * progress) + ')';
-      title.style.opacity = String(1 - .6 * progress);
-      hint.style.opacity = String(Math.max(0, 1 - progress * 4));
-    };
-    const updateIntro = () => {
-      if (!pending) { pending = true; requestAnimationFrame(paintIntro); }
-    };
-    addEventListener('scroll', updateIntro, { passive: true });
-    addEventListener('resize', updateIntro, { passive: true });
-    paintIntro();
-  }
-}
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduce) { root.classList.add('static'); }
 else {
 root.classList.add('reel');
+const phoneReel = matchMedia('(max-width: 1024px), (any-pointer: coarse)').matches;
 const W = { up: .55, line: .7, star: .3, words: 1, pop: 1, corner: .32, shrink: 1.8, draw: .6 };
 const clamp = (x, a = 0, b = 1) => x < a ? a : x > b ? b : x;
 const out3 = x => 1 - (1 - x) ** 3;
@@ -449,10 +440,10 @@ function frame(now) {
   let i = 0; while (i < starts.length - 1 && starts[i + 1] <= y) i++;
   const s = shots[i]; activate(s);
   let p = clamp((y - starts[i]) / (s._L * vh));
-  if (s._pan) s.querySelector('.in').style.setProperty('--pan', (-s._pan * inout(clamp((p - .06) / .86))).toFixed(1) + 'px');
+  if (s._pan) s.querySelector('.in').style.setProperty('--pan', (-s._pan * inout(clamp((p - (phoneReel ? .25 : .06)) / (phoneReel ? .65 : .86)))).toFixed(1) + 'px');
   const intro = clamp((now - introT0) / introDur);
   if (i === 0) p = Math.max(p * 1.6, intro);
-  paint(s, p);
+  paint(s, phoneReel && s._pan ? clamp(p / .25) : p);
   fills.forEach((b, k) => { const [a, z] = secRange[k]; b.style.transform = `scaleX(${clamp((y - a) / (z - a)).toFixed(4)})`; });
   if (y !== target || intro < 1) raf = requestAnimationFrame(frame);
 }
@@ -463,7 +454,7 @@ addEventListener('resize', () => { if (innerWidth !== lw || Math.abs(innerHeight
 
 function jump(id) {
   const ix = shots.findIndex(s => s.dataset.anchor === id); if (ix < 0) return false;
-  const top = ix === 0 ? 0 : starts[ix] + shots[ix]._L * vh * .86;
+  const top = ix === 0 ? 0 : starts[ix] + shots[ix]._L * vh * (phoneReel && shots[ix]._pan ? .25 : .86);
   y = top; scrollTo({ top, behavior: 'instant' }); introT0 = -1e9; kick(); return true;
 }
 document.addEventListener('click', e => {
