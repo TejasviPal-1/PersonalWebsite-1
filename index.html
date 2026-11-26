@@ -156,6 +156,10 @@ nav a.cur{text-decoration:underline;text-underline-offset:5px;text-decoration-th
 .reel .name-intro{display:flex;position:fixed;inset:0;z-index:15;background:var(--pink);align-items:center;justify-content:center;flex-direction:column;pointer-events:none}
 .name-intro strong{font-size:clamp(80px,14vw,220px);line-height:.9;font-weight:600;letter-spacing:-.065em;transform-origin:center}
 .name-intro small{position:absolute;bottom:42px;font-size:14px;letter-spacing:.06em}
+.static.mobile-intro .name-intro{display:flex;position:relative;min-height:100vh;min-height:100svh;padding:112px 24px 80px;background:var(--pink);align-items:center;justify-content:center;flex-direction:column;overflow:hidden}
+.static.mobile-intro .name-intro strong{display:block;max-width:100%;font-size:clamp(64px,18vw,160px);line-height:.9;text-align:center;will-change:transform;transform-origin:center}
+.static.mobile-intro .name-intro small{bottom:32px}
+@media(prefers-reduced-motion:reduce){.static.mobile-intro .name-intro{display:none}}
 </style>
 </head>
 <body>
@@ -314,7 +318,30 @@ document.querySelectorAll('[data-fx=words]').forEach(p => {
   p.innerHTML = p.textContent.trim().split(/(\s+)/).map(x => /^\s+$/.test(x) ? ' ' : '<span class="w">' + esc(x) + '</span>').join('');
 });
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width: 1024px), (any-pointer: coarse)').matches;
-if (reduce) { root.classList.add('static'); }
+if (reduce) {
+  root.classList.add('static');
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    root.classList.add('mobile-intro');
+    const intro = document.querySelector('.name-intro');
+    const title = intro.querySelector('strong');
+    const hint = intro.querySelector('small');
+    let pending = false;
+    const paintIntro = () => {
+      pending = false;
+      const rect = intro.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / Math.max(1, rect.height)));
+      title.style.transform = 'translateY(' + (-24 * progress) + 'px) scale(' + (1 - .32 * progress) + ')';
+      title.style.opacity = String(1 - .6 * progress);
+      hint.style.opacity = String(Math.max(0, 1 - progress * 4));
+    };
+    const updateIntro = () => {
+      if (!pending) { pending = true; requestAnimationFrame(paintIntro); }
+    };
+    addEventListener('scroll', updateIntro, { passive: true });
+    addEventListener('resize', updateIntro, { passive: true });
+    paintIntro();
+  }
+}
 else {
 root.classList.add('reel');
 const W = { up: .55, line: .7, star: .3, words: 1, pop: 1, corner: .32, shrink: 1.8, draw: .6 };
