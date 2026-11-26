@@ -1,390 +1,426 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tejasvi Pal | ML Engineer</title>
-  <meta name="description" content="Tejasvi — ML Engineer portfolio: About, Credentials, Projects, Blog, and Contact." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Tailwind config for color palette tweaks
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui']},
-          colors: {
-            brand: {
-              50:'#f9fafb',100:'#f3f4f6',200:'#e5e7eb',300:'#d1d5db',400:'#9ca3af',
-              500:'#6b7280',600:'#4b5563',700:'#374151',800:'#1f2937',900:'#111827'
-            }
-          },
-          boxShadow: {
-            soft: '0 10px 30px -10px rgba(0,0,0,0.15)'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    /* Theme (light/dark) */
-    :root { --bg: 255 255 255; --fg: 17 24 39; --muted: 107 114 128; --card: 249 250 251; }
-    .dark :root, .dark { --bg: 17 24 39; --fg: 229 231 235; --muted: 156 163 175; --card: 31 41 55; }
-    body { background: rgb(var(--bg)); color: rgb(var(--fg)); }
-    .card { background: rgb(var(--card)); }
-    /* Fancy underline */
-    .link-underline { background-image: linear-gradient(transparent,transparent),linear-gradient(currentColor,currentColor); background-size: 0 2px,100% 2px; background-position: 0 100%,0 100%; background-repeat: no-repeat; transition: background-size .3s ease; }
-    .link-underline:hover { background-size: 100% 2px,100% 2px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tejasvi Pal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<style>
+/* VOICE  warm, direct, a little playful — the Day 7 reel, as a website
+   IDEA   the page is a vertical reel: scroll is the playhead, every screen is a shot, hard cuts between
+   PICTURE you, framed — the portrait opens full-bleed and shrinks into its window, corner words land
+   COLOUR baby pink #FFB7CE and white alternating, navy ink #0B3954, teal / red / cream accents
+   TYPE   Inter 600 stacked lowercase words, captions that fill in word by word */
+:root{color-scheme:light;--pink:#FFB7CE;--ink:#0B3954;--teal:#087E8B;--red:#C81D25;--cream:#FAE3C6;--soft:#3d5f73}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;font:16px/1.55 Inter,system-ui,sans-serif;color:var(--ink);background:var(--pink);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:var(--ink)}a:hover{color:var(--teal)}
+a:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:999px}
+
+/* chrome: story bar + nav */
+#top-ui{position:fixed;z-index:20;left:0;right:0;top:0;pointer-events:none;transition:background-color .2s}
+#bar{display:none;gap:4px;padding:8px max(4vw,14px) 0}
+#bar i{flex:1;height:3px;border-radius:3px;background:rgba(11,57,84,.16);overflow:hidden}
+#bar b{display:block;height:100%;width:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+nav{pointer-events:auto;display:flex;flex-wrap:wrap;align-items:center;gap:6px 26px;padding:14px max(4vw,16px);font-size:14px;font-weight:500}
+nav a{text-decoration:none;padding:4px 0}
+nav a:first-child{font-weight:600;margin-right:auto}
+nav a.cur{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
+@media(max-width:560px){nav{gap:4px 14px;font-size:13px}}
+
+/* shots */
+.shot{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:88px max(5vw,20px) 64px;overflow:hidden;background:#fff}
+.shot.p{background:var(--pink)}
+.in{width:100%;max-width:1240px;transform-origin:50% 50%;transform:translateY(var(--pan,0px)) scale(var(--fit,1))}
+.reel .shot.tall{align-items:flex-start}
+.reel .shot.tall .in{transform-origin:50% 0}
+.col{display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px}
+.chip{align-self:flex-start;font-size:13px;font-weight:600;background:var(--pink);padding:6px 13px;border-radius:999px;display:inline-block}
+.p .chip{background:#fff}
+.col .chip{align-self:center}
+.stk{position:relative;margin:0;font-weight:600;line-height:.84;letter-spacing:-.055em;display:flex;flex-direction:column}
+.stk span{display:block}
+.col .stk{align-items:center}
+.xl{font-size:clamp(84px,11vw,168px)}
+.l{font-size:clamp(64px,9.4vw,136px)}
+.m{font-size:clamp(52px,8vw,112px)}
+.star{position:absolute;display:block;line-height:1;letter-spacing:0}
+.star i{display:inline-block;font-style:normal;animation:tw 2.6s ease-in-out infinite}
+@keyframes tw{50%{transform:scale(.7) rotate(18deg);opacity:.7}}
+.cap{margin:0;max-width:30ch;font-size:clamp(21px,2.5vw,32px);line-height:1.38;font-weight:500;text-wrap:pretty}
+.cap.wide{max-width:40ch;font-size:clamp(19px,2.1vw,28px)}
+.body{margin:0;max-width:62ch;font-size:17px;line-height:1.65;text-wrap:pretty}
+.w{display:inline-block;white-space:pre}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.col .btns{justify-content:center}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;min-height:46px;text-decoration:none;font-size:15px;font-weight:600;padding:0 21px;border-radius:999px;border:1.5px solid var(--ink)}
+.btn.solid{background:var(--ink);color:#fff}
+.btn.solid:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+.frame{position:relative;border:5px solid #fff;background:#fff;overflow:hidden}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
+.slot{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;font-size:14px;color:var(--soft);background:repeating-linear-gradient(135deg,#F4F6F8 0 14px,#eef1f4 14px 28px)}
+.cornered{position:relative;padding:38px 0}
+.cn{position:absolute;font-size:15px;font-weight:500}
+.cn.a{top:8px;left:0}.cn.b{top:8px;right:0}.cn.c{bottom:8px;left:0}.cn.d{bottom:8px;right:0}
+
+/* hero */
+.hero{display:flex;flex-wrap:wrap-reverse;align-items:center;justify-content:center;gap:40px clamp(40px,5vw,88px)}
+.hero .txt{flex:1 1 360px;max-width:520px;position:relative;display:flex;flex-direction:column;gap:26px}
+.hero .chip{background:var(--pink);border:1.5px solid var(--ink);padding:5px 13px}
+.pf{width:clamp(260px,min(46vw,calc(100vh - 230px)),720px);aspect-ratio:1}
+.pf img{object-position:50% 34%}
+
+/* eve */
+.demo{width:min(820px,100%);aspect-ratio:16/10;max-height:56vh}
+.card{background:var(--cream);padding:26px;display:flex;flex-direction:column;gap:16px;max-width:560px;text-align:left}
+.card p{margin:0;font-size:clamp(19px,2vw,24px);line-height:1.35;font-weight:500;text-wrap:pretty}
+.role{font-size:16px;line-height:1.5;color:var(--soft);max-width:44ch}
+
+/* engineering */
+.two{display:flex;flex-wrap:wrap;gap:36px 72px;align-items:center}
+.two>*{flex:1 1 380px}
+.eng>.col{flex:0 1 420px}
+.eng .chip{align-self:flex-start}
+.tl{position:relative;padding-left:40px;display:flex;flex-direction:column;gap:30px;text-align:left}
+.tl .rail{position:absolute;left:7px;top:8px;bottom:8px;width:1.5px;background:var(--ink);transform-origin:top}
+.job{position:relative;display:flex;flex-direction:column;gap:8px}
+.job .dot{position:absolute;left:-40px;top:3px;width:16px;height:16px;border-radius:999px;border:4px solid var(--pink);background:var(--ink)}
+.job .hd{display:flex;flex-direction:column;gap:3px}
+.dates{font-size:13px;font-weight:600;color:var(--red)}
+.org{font-size:clamp(28px,2.8vw,38px);font-weight:600;letter-spacing:-.035em;line-height:1.05}
+.ttl{font-size:15px}
+.job ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:1.5}
+.grid{border:5px solid #fff;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr));gap:5px;background:#fff;width:100%;max-width:1040px;margin:0 auto;text-align:left}
+.grid div{background:var(--pink);padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;gap:10px}
+.grid b{font-size:15px;font-weight:600}
+.grid span{font-size:clamp(17px,1.7vw,22px);line-height:1.45}
+
+/* speaking */
+.sp{display:flex;flex-wrap:wrap-reverse;align-items:center;justify-content:center;gap:36px clamp(40px,6vw,96px)}
+.sp .txt{flex:1 1 360px;max-width:560px;display:flex;flex-direction:column;gap:22px;position:relative}
+.stage{width:clamp(200px,min(30vw,calc((100vh - 260px)*.6)),380px);aspect-ratio:455/757}
+.stage img{object-position:80% 36%}
+.talks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:28px 36px}
+.talk{display:flex;flex-direction:column;align-items:flex-start;gap:14px;text-align:left;border-top:1.5px solid var(--ink);padding-top:20px}
+.talk .chip{font-size:12px;padding:4px 10px}
+.talk h3{margin:0;font-size:clamp(26px,2.6vw,34px);font-weight:600;letter-spacing:-.03em;line-height:1.1;text-wrap:balance}
+.talk p{margin:0;font-size:17px;line-height:1.55;color:var(--soft)}
+/* eve story */
+.story{display:flex;flex-wrap:wrap;gap:32px 64px;max-width:1080px;margin:0 auto;text-align:left}
+.paras{flex:1 1 460px;display:flex;flex-direction:column;gap:16px;font-size:clamp(17px,1.3vw,19px);line-height:1.62}
+.paras p{margin:0;text-wrap:pretty}
+.side{flex:0 1 320px;display:flex;flex-direction:column;gap:18px}
+.side .card{padding:24px}
+.side .card p{font-size:19px}
+.demo{max-height:42vh}
+/* contact */
+.foot{position:absolute;left:max(5vw,20px);right:max(5vw,20px);bottom:22px;display:flex;flex-wrap:wrap;gap:6px 24px;padding-top:16px;border-top:1.5px solid var(--ink);font-size:13px}
+.foot span:first-child{margin-right:auto}
+
+/* reel mode: one fixed stage, the scroll is the playhead */
+.reel #bar{display:flex}
+.reel #stage{position:fixed;inset:0;overflow:hidden}
+.reel .shot{position:absolute;inset:0;min-height:0;visibility:hidden}
+.reel .shot.on{visibility:visible}
+.reel .shot.cut{animation:cut .34s cubic-bezier(.2,.7,.3,1)}
+@keyframes cut{from{transform:scale(1.05);filter:brightness(1.07)}}
+.reel [data-fx]{will-change:transform,opacity}
+.static .foot{position:static;margin-top:48px}
+.static .shot{flex-direction:column}
+.static .foot{width:100%;max-width:1240px}
+@media(max-width:600px){.shot{padding-top:96px}.cn{font-size:13px}.job{padding-left:34px}
+.hero{gap:22px}.hero .txt{gap:18px}.pf{width:min(240px,30vh)}.cornered{padding:30px 0}.hero .btn{font-size:14px;padding:0 15px;min-height:44px}.hero .btns{gap:8px}.hero .xl{font-size:84px}}
+</style>
 </head>
-<body class="font-sans">
-  <!-- Header / Nav -->
-  <header class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-black/30 border-b border-black/5 dark:border-white/5">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-center justify-between py-3">
-        <a href="#top" class="flex items-center gap-2 font-semibold text-lg">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-brand-500 text-white">T</span>
-          <span>Tejasvi</span>
-        </a>
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#about" class="hover:text-brand-600 link-underline">About</a>
-          <a href="#credentials" class="hover:text-brand-600 link-underline">Credentials</a>
-          <a href="#projects" class="hover:text-brand-600 link-underline">Projects</a>
-          <a href="#blog" class="hover:text-brand-600 link-underline">Blog</a>
-          <a href="#contact" class="hover:text-brand-600 link-underline">Get in touch</a>
-        </nav>
-        <div class="flex items-center gap-2">
-          <button id="themeToggle" class="rounded-xl border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm hover:bg-black/5 dark:hover:bg-white/10" aria-label="Toggle theme">🌙</button>
-          <button id="menuBtn" class="md:hidden rounded-xl border border-black/10 dark:border-white/10 px-3 py-1.5 text-sm">Menu</button>
-        </div>
-      </div>
-    </div>
-    <!-- Mobile menu -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-black/5 dark:border-white/10">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="#about" class="hover:text-brand-600">About</a>
-        <a href="#credentials" class="hover:text-brand-600">Credentials</a>
-        <a href="#projects" class="hover:text-brand-600">Projects</a>
-        <a href="#blog" class="hover:text-brand-600">Blog</a>
-        <a href="#contact" class="hover:text-brand-600">Get in touch</a>
-      </div>
-    </div>
-  </header>
+<body>
+<div id="top-ui"><div id="bar"></div>
+<nav aria-label="Main">
+<a href="#top">tejasvi pal</a>
+<a href="#eve">eve</a>
+<a href="#engineering">engineering</a>
+<a href="#speaking">speaking</a>
+<a href="/collabs/">collabs</a>
+<a href="#contact">contact</a>
+</nav></div>
 
-  <!-- Hero -->
-  <section id="top" class="relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 pt-16 pb-10 grid md:grid-cols-2 items-center gap-10">
-      <div>
-        <p class="text-sm tracking-widest uppercase text-brand-600 font-semibold">ML Engineer • MSCS (AI) @ Georgia Tech</p>
-        <h1 class="text-4xl md:text-5xl font-extrabold mt-3 leading-tight"> Engineering visionary AI systems & scalable ML solutions</h1>
-        <p class="mt-4 text-gray-600 dark:text-gray-300 max-w-xl">I design, automate, and scale machine learning platforms, and I love shipping things that are fast, robust, and actually useful.</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#projects" class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-4 py-2 font-medium shadow-soft hover:bg-brand-700">View Projects</a>
-          <a href="#contact" class="inline-flex items-center justify-center rounded-xl border border-black/10 dark:border-white/10 px-4 py-2 font-medium hover:bg-black/5 dark:hover:bg-white/10">Get in touch</a>
-        </div>
-      </div>
-      <div class="relative space-y-6 md:space-y-8">
-        <!-- Profile photo (top right on large screens) -->
-        <figure class="flex md:justify-end">
-          <img src="IMG_2978.jpg" alt="Tejasvi portrait" class="w-40 h-40 md:w-[14rem] md:h-[21rem] rounded-full object-cover border border-black\/10 dark:border-white\/10 shadow-soft"/>
-        </figure>
-        <!-- Skill tiles -->
-        <div class="card rounded-2xl p-6 shadow-soft">
-          <ul class="grid grid-cols-2 gap-4 text-sm">
-            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">Cloud</span><span class="font-semibold">Azure, AWS, GCP, ADF, AML</span></li>
-            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">Data</span><span class="font-semibold">Spark, Databricks</span></li>
-            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">ML</span><span class="font-semibold">Sklearn, PyTorch, Tensorflow, Pandas, PySpark</span></li>
-            <li class="p-4 rounded-xl bg-white\/70 dark:bg-white\/5 border border-black\/5 dark:border-white\/10"><span class="block text-xs text-gray-500">Ops</span><span class="font-semibold">Docker, CI/CD, Kubernetes, Jenkins, Splunk, Dynatrace, New Relic</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<div id="track"><main id="stage">
 
-  <!-- About -->
-  <section id="about" class="py-16 border-t border-black/5 dark:border-white/10">
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-10 items-start">
-      <div class="md:col-span-1">
-        <h2 class="text-2xl font-bold">About Me</h2>
-        <p class="mt-2 text-gray-600 dark:text-gray-300">Quick snapshot of who I am and what I enjoy working on.</p>
-      </div>
-      <div class="md:col-span-2">
-        <div class="card rounded-2xl p-6 shadow-soft">
-          <p>Hi! I’m Tejasvi, a Toronto-based ML Platform Engineer pursuing an MS in CS - specializing in Artificial Intelligence. With a bottom-up perspective on ML infrastructure, I’ve handled everything from VM setup and DevOps agent configuration to ADF SHIR integration and pipeline orchestration, establishing strong underpinnings for enterprise-grade ML systems. I’ve built Azure and Databricks‑based pipelines, automated secrets and deployments, and partnered with data science teams to productionize models safely. Outside work, I’m into DJing, karaoke, and building quirky ML tools.</p>
-          <ul class="mt-6 grid sm:grid-cols-2 gap-4 text-sm">
-            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Currently:</strong> ML Platform Engineer @ Canada Life</li>
-            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Degree:</strong> BSc CS (WLU), MSCS (GT)</li>
-            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Looking for:</strong> Fun projects that make a difference</li>
-            <li class="p-4 rounded-xl bg-white/70 dark:bg-white/5 border border-black/5 dark:border-white/10"><strong>Interests:</strong> ML, MLOps, Recommender Systems, LLMs, NLP, Linguistics, Ethics</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="shot p" id="top" data-sec="0" data-anchor="top" data-len="1.1">
+<div class="in hero">
+<div class="txt">
+<span class="chip" data-fx="up">engineer · founder of eve · toronto</span>
+<h1 class="stk xl"><span data-fx="line">tejasvi</span><span data-fx="line">pal</span></h1>
+<span class="star" data-fx="star" style="right:8%;top:16%;font-size:22px;color:#fff"><i>★</i></span>
+<span class="star" data-fx="star" data-same style="left:44%;top:46%;font-size:13px;color:var(--red)"><i>★</i></span>
+<span class="star" data-fx="star" data-same style="right:22%;top:30%;font-size:10px;color:var(--teal)"><i>★</i></span>
+<p class="body" data-fx="words">Hi, I’m Tejasvi. I’m an engineer and the founder of Eve. I build machine learning systems, explain how technology works, and spend a lot of time thinking about what happens after someone asks the family group chat, “Who’s taking care of this?”</p>
+<div class="btns" data-fx="up">
+<a class="btn solid" href="#eve">Explore Eve →</a>
+<a class="btn" href="#engineering">View engineering work ↓</a>
+</div>
+</div>
+<div class="cornered">
+<span class="cn a" data-fx="corner">engineer</span>
+<span class="cn b" data-fx="corner">founder of eve</span>
+<span class="cn c" data-fx="corner">tejasvi pal</span>
+<span class="cn d" data-fx="corner">toronto</span>
+<div class="frame pf" data-fx="shrink" data-first><img src="assets/portrait.jpg" alt="Portrait of Tejasvi Pal"></div>
+</div>
+</div>
+</section>
 
-  <!-- Credentials -->
-  <section id="credentials" class="py-16 border-t border-black/5 dark:border-white/10">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-10 items-start">
-        <div>
-          <h2 class="text-2xl font-bold">Credentials</h2>
-          <p class="mt-2 text-gray-600 dark:text-gray-300">Education & experience</p>
-        </div>
-        <div class="md:col-span-2">
-          <div class="space-y-4" id="credentials-accordion">
-            <!-- Item 1 -->
-            <details class="group card rounded-2xl p-5 shadow-soft" open>
-              <summary class="cursor-pointer list-none flex items-center justify-between">
-                <div>
-                  <h3 class="font-semibold">ML Platform Engineer - Canada Life</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">2024 — Present • Toronto, ON</p>
-                </div>
-                <span class="text-xl transition group-open:rotate-180">⌄</span>
-              </summary>
-              <ul class="mt-4 list-disc pl-5 text-sm space-y-2">
-                <li>Automated Databricks Secrets & pipeline deployments via CI/CD (Gitlab, ADF).</li>
-                <li>Productionized models with monitoring, alerting, and rollback strategies.</li>
-                <li>Partnered with DS to reduce training runtime 40% via Spark tuning & caching.</li>
-              </ul>
-            </details>
-            <!-- Item 2 -->
-            <details class="group card rounded-2xl p-5 shadow-soft">
-              <summary class="cursor-pointer list-none flex items-center justify-between">
-                <div>
-                  <h3 class="font-semibold">M.S. Computer Science (ML) - Georgia Tech (MSCS)</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">2023 — Present • Specialization: Artificial Intelligence</p>
-                </div>
-                <span class="text-xl transition group-open:rotate-180">⌄</span>
-              </summary>
-              <ul class="mt-4 list-disc pl-5 text-sm space-y-2">
-                <li>Courses: ML for Trading, Cognitive Science, AI Ethics & Society, NLP, KBAI.</li>
-                <li>Projects: Spotify subgenre discovery (EM, K‑Means, PCA/ICA), Analogical Reasoning Assistant.</li>
-              </ul>
-            </details>
-            <!-- Item 3 -->
-            <details class="group card rounded-2xl p-5 shadow-soft">
-              <summary class="cursor-pointer list-none flex items-center justify-between">
-                <div>
-                  <h3 class="font-semibold">B.Sc. Computer Science - Wilfrid Laurier University</h3>
-                  <p class="text-sm text-gray-600 dark:text-gray-300">2016 — 2020 • Co‑op</p>
-                </div>
-                <span class="text-xl transition group-open:rotate-180">⌄</span>
-              </summary>
-              <ul class="mt-4 list-disc pl-5 text-sm space-y-2">
-                <li>Developed an automated system for handwriting detection</li>
-                <li>Built a voice assistant using DialogFlow that predicts sentiment analysis score using NLP</li>
-              </ul>
-            </details>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- EVE -->
+<section class="shot" id="eve" data-sec="1" data-anchor="eve" data-len="0.9">
+<div class="in col">
+<span class="chip" data-fx="up">01 — founding</span>
+<h2 class="stk l"><span data-fx="line">building</span><span data-fx="line">eve</span>
+<span class="star" data-fx="star" style="right:-28px;top:4%;font-size:20px;color:var(--pink)"><i>★</i></span>
+<span class="star" data-fx="star" data-same style="left:-18px;top:58%;font-size:12px;color:var(--red)"><i>★</i></span>
+<span class="star" data-fx="star" data-same style="right:14%;bottom:-14px;font-size:10px;color:var(--teal)"><i>★</i></span>
+</h2>
 
-  <!-- Projects -->
-  <section id="projects" class="py-16 border-t border-black/5 dark:border-white/10">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-end justify-between gap-6 flex-wrap">
-        <div>
-          <h2 class="text-2xl font-bold">Projects</h2>
-          <p class="mt-2 text-gray-600 dark:text-gray-300"></p>
-        </div>
-        <div class="flex items-center gap-2 text-sm">
-          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="all">All</button>
-          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="ml">ML</button>
-          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="mlops">MLOps</button>
-          <button class="filter-btn rounded-xl border px-3 py-1.5" data-filter="data">Data</button>
-        </div>
-      </div>
+</div>
+</section>
 
-      <div id="projectsGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        Coming soon....
-        <!-- Project cards (duplicate pattern and adjust data-tags) -->
-        <!-- <article class="project card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10" data-tags="ml mlops">
-          <h3 class="font-semibold">Analogical Reasoning Assistant</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Structure mapping (NetworkX, Streamlit) matching cross‑domain analogies; evaluated with structural overlap & P@3.</p>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Python</span>
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">NetworkX</span>
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Streamlit</span>
-          </div>
-          <div class="mt-4 flex gap-2">
-            <a class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-3 py-1.5 text-sm" href="#" onclick="openModal('Analogical Reasoning Assistant','Cross‑domain analogy matcher with structure mapping; demoed with circuits↔water systems.');return false;">Preview</a>
-            <a class="inline-flex items-center justify-center rounded-xl border px-3 py-1.5 text-sm" target="_blank" href="https://github.com/TejasviPal-1">Code</a>
-          </div>
-        </article> -->
+<section class="shot p" data-sec="1" data-len="1.1">
+<div class="in"><div class="story">
+<div class="paras">
+<p data-fx="up">I grew up in Delhi and moved to Canada at seventeen. As I think about my parents getting older, I keep coming back to a question that feels personal to me. How do you show up for someone when you can’t be in the room?</p>
+<p data-fx="up">In conversations with family caregivers, I keep hearing about the “default daughter”, the one who remembers the appointments, follows up on results, and keeps her siblings informed. Even when everyone wants to help, she’s often left to work out who does what and make sure it happens. Many millennials are already navigating the sandwich years, raising children while caring for aging parents. As Gen Z approaches that stage of life, I keep wondering how we can help families prepare to share care, with everyone understanding what needs doing and how they can contribute.</p>
+<p data-fx="up">That’s why we’re building Eve. I imagine a future where families can understand a loved one’s health, reach the right resources, and find a community that understands what they’re going through. I want Eve to bring those pieces together, using AI to help families make sense of scattered information and take the next step in caring for someone they love, wherever they are. At the heart of that vision is a belief that the person who cares for everyone deserves support, too.</p>
+</div>
+<div class="side">
 
-        <article class="project card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10" data-tags="mlops data">
-          <h3 class="font-semibold">Databricks Secrets Automation</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Gitlab  + Databricks + ADF pipelines to sync secrets and orchestrate deployments safely.</p>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Python</span>
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">ADF</span>
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">Databricks</span>
-          </div>
-          <div class="mt-4 flex gap-2">
-            <a class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-3 py-1.5 text-sm" href="#" onclick="openModal('Databricks Secrets Automation','CI/CD to provision & rotate secrets across workspaces; reduced manual ops and drift.');return false;">Preview</a>
-            <a class="inline-flex items-center justify-center rounded-xl border px-3 py-1.5 text-sm" target="_blank" href="https://github.com/TejasviPal-1">Code</a>
-          </div>
-        </article>
+<a class="btn solid" style="align-self:flex-start" href="https://evecare.ing" data-fx="up">Visit Eve ↗</a>
+<div class="card" data-fx="pop">
+<p>Working in caregiving, aging or eldercare — as a clinician, operator, researcher or investor? I’d like to learn from you.</p>
+<a class="btn" style="align-self:flex-start" href="#contact">Get in touch →</a>
+</div>
+</div>
+</div></div>
+</section>
 
-        <article class="project card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10" data-tags="ml data">
-          <h3 class="font-semibold">Spotify Subgenre Discovery</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Unsupervised learning (EM, K‑Means, PCA/ICA) to uncover latent subgenres from audio features.</p>
-          <div class="mt-3 flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-300">
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">EM</span>
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">K‑Means</span>
-            <span class="px-2 py-1 rounded-full bg-white/70 dark:bg-white/5 border">PCA/ICA</span>
-          </div>
-          <div class="mt-4 flex gap-2">
-            <a class="inline-flex items-center justify-center rounded-xl bg-brand-600 text-white px-3 py-1.5 text-sm" href="#" onclick="openModal('Spotify Subgenre Discovery','Clustered thousands of tracks; evaluated cluster quality and surfaced exemplar songs.');return false;">Preview</a>
-            <a class="inline-flex items-center justify-center rounded-xl border px-3 py-1.5 text-sm" target="_blank" href="https://github.com/TejasviPal-1">Code</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
+<!-- ENGINEERING -->
+<section class="shot" id="engineering" data-sec="2" data-anchor="engineering" data-len="1.2">
+<div class="in"><div class="two eng">
+<div class="col" style="align-items:flex-start;text-align:left">
+<span class="chip" data-fx="up">02 — engineering</span>
+<h2 class="stk m" style="align-items:flex-start;font-size:clamp(48px,5.4vw,84px)"><span data-fx="line">selected</span><span data-fx="line">engineering</span><span data-fx="line">work</span>
+<span class="star" data-fx="star" style="left:min(44%,260px);top:72%;font-size:20px;color:var(--pink)"><i>★</i></span>
+</h2>
+</div>
+<div class="tl">
+<span class="rail" data-fx="draw"></span>
+<div class="job" data-fx="up"><span class="dot"></span>
+<div class="hd"><span class="dates">Expected Dec 2026</span><span class="org">Georgia Tech</span><span class="ttl">M.S. Computer Science, specializing in AI</span></div>
+<ul><li>Coursework in NLP, machine learning for trading, knowledge-based AI, cognitive science, AI ethics, and entrepreneurship.</li></ul></div>
+<div class="job" data-fx="up"><span class="dot"></span>
+<div class="hd"><span class="dates">2024 – 2026</span><span class="org">Canada Life</span><span class="ttl">ML Platform Engineer</span></div>
+<ul><li>Reduced PyTorch inference latency by 40% on GPU-backed Azure Kubernetes Service.</li><li>Worked on Databricks and Azure ML pipelines and helped reduce cloud costs by 15%.</li></ul></div>
+<div class="job" data-fx="up"><span class="dot"></span>
+<div class="hd"><span class="dates">Previously</span><span class="org">Manulife</span><span class="ttl">Anomaly Detection Engineer</span><span class="ttl">Platform Reliability Engineer</span></div>
+<ul><li>Worked on anomaly detection serving 30,000+ monthly active users.</li><li>Reduced reporting latency by 95%.</li></ul></div>
+<div class="job" data-fx="up"><span class="dot"></span>
+<div class="hd"><span class="dates">2020</span><span class="org">Wilfrid Laurier University</span><span class="ttl">B.Sc. Computer Science</span></div></div>
+</div>
+</div></div>
+</section>
 
-  <!-- Blog -->
-  <section id="blog" class="py-16 border-t border-black/5 dark:border-white/10">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-end justify-between gap-6 flex-wrap">
-        <div>
-          <h2 class="text-2xl font-bold">Blog</h2>
-          <p class="mt-2 text-gray-600 dark:text-gray-300">Recent posts and thoughts.</p>
-        </div>
-      </div>
-      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="card rounded-2xl p-5 shadow-soft border border-black/5 dark:border-white/10">
-          <p class="text-xs uppercase tracking-widest text-brand-600 font-semibold">MLOps</p>
-          <h3 class="mt-2 font-semibold">My two cents on the current state of AI</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Are we getting overdependent on AI?</p>
-          <a href="#" class="mt-3 inline-block text-sm link-underline">Read more →</a>
-        </article>
-        <article class="card rounded-2xl p-5 shadow-soft border border-black/5 dark;border-white/10">
-          <p class="text-xs uppercase tracking-widest text-brand-600 font-semibold">Projects</p>
-          <h3 class="mt-2 font-semibold">Discovering Spotify subgenres</h3>
-          <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">A short write‑up of results and what surprised me.</p>
-          <a href="#" class="mt-3 inline-block text-sm link-underline">Read more →</a>
-        </article>
-      </div>
-    </div>
-  </section>
+<section class="shot p" data-sec="2" data-len="1">
+<div class="in"><div class="grid">
+<div data-fx="pop"><b>ml</b><span>PyTorch · TensorFlow · scikit-learn · Pandas · PySpark</span></div>
+<div data-fx="pop"><b>data</b><span>Spark · Databricks · Azure ML</span></div>
+<div data-fx="pop"><b>cloud</b><span>Azure (AKS, ADF) · AWS · GCP</span></div>
+<div data-fx="pop"><b>ops</b><span>Docker · Kubernetes · CI/CD · Jenkins · Splunk · Dynatrace · New Relic</span></div>
+</div></div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact" class="py-16 border-t border-black/5 dark:border-white/10">
-    <div class="mt-6 text-sm text-gray-600 dark:text-gray-300 flex items-center gap-2 justify-center">
-        <span>Message me on</span>
-        <a class="flex items-center gap-1 link-underline" href="https://www.linkedin.com/in/tejasvi-pal" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.94H4.7V24H.22V8.94zM8.53 8.94h4.27v2.05h.06c.59-1.12 2.03-2.3 4.18-2.3 4.47 0 5.3 2.94 5.3 6.77V24h-4.48v-7.69c0-1.83-.03-4.18-2.55-4.18-2.55 0-2.94 1.99-2.94 4.05V24H8.53V8.94z"/></svg>
-          
-        </a>
-      </div>
-  </section>
+<!-- SPEAKING -->
+<section class="shot" id="speaking" data-sec="3" data-anchor="speaking" data-len="1.2">
+<div class="in sp">
+<div class="txt">
+<span class="chip" data-fx="up">03 — speaking</span>
+<h2 class="stk l"><span data-fx="line">invite me</span><span data-fx="line">to speak</span>
+<span class="star" data-fx="star" style="left:min(70%,420px);top:4%;font-size:22px;color:var(--pink)"><i>★</i></span>
+</h2>
+</div>
+<div class="frame stage" style="border-color:var(--pink)" data-fx="shrink"><img src="assets/stage.jpg" alt="Tejasvi speaking on stage"></div>
+</div>
+</section>
 
-  <!-- Footer -->
-  <footer class="py-10 border-t border-black/5 dark:border-white/10">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3 text-sm">
-      <p>© <span id="year"></span> Tejasvi. All rights reserved.</p>
-      <div class="flex items-center gap-4">
-        <a class="link-underline" href="https://github.com/TejasviPal-1">GitHub</a>
-        <a class="link-underline" href="https://www.linkedin.com/in/tejasvi-pal">LinkedIn</a>
-        <a class="link-underline" href="#top">Back to top ↑</a>
-      </div>
-    </div>
-  </footer>
+<section class="shot p" data-sec="3" data-len="1.1">
+<div class="in"><div class="talks">
+<div class="talk" data-fx="up"><span class="chip">01</span><h3>What happens after the model ships?</h3><p>Lessons from running ML systems in production: latency, reliability, and what an on-call engineer needs at 3 a.m.</p></div>
+<div class="talk" data-fx="up"><span class="chip">02</span><h3>Who’s actually doing the follow-up?</h3><p>What caregiver interviews taught me about invisible work, and how that changed the product we’re building.</p></div>
+<div class="talk" data-fx="up"><span class="chip">03</span><h3>Explaining AI in 60 seconds</h3><p>How I turn a technical story into a short video, and decide which details have to survive the edit.</p></div>
+</div>
+<div style="margin-top:32px" data-fx="up"><a class="btn solid" href="mailto:tejcollabs@epochexplorer.ca?subject=Speaking%20inquiry">Invite me to speak →</a></div>
+</div>
+</section>
 
-  <!-- Modal -->
-  <div id="modal" class="fixed inset-0 hidden items-center justify-center p-4">
-    <div class="absolute inset-0 bg-black/50" onclick="closeModal()"></div>
-    <div class="relative card rounded-2xl max-w-lg w-full p-6 shadow-soft border border-black/5 dark:border-white/10">
-      <div class="flex items-start justify-between">
-        <div>
-          <h3 id="modalTitle" class="text-xl font-semibold"></h3>
-          <p id="modalDesc" class="mt-2 text-sm text-gray-600 dark:text-gray-300"></p>
-        </div>
-        <button onclick="closeModal()" class="ml-4 rounded-xl border px-3 py-1.5">✕</button>
-      </div>
-    </div>
-  </div>
+<!-- CONTACT -->
+<section class="shot" id="contact" data-sec="4" data-anchor="contact" data-len="1.1">
+<div class="in col">
+<span class="chip" data-fx="up">04 — contact</span>
+<h2 class="stk m"><span data-fx="line">interested</span><span data-fx="line">in talking</span><span data-fx="line">further?</span>
+<span class="star" data-fx="star" style="right:-24px;top:8%;font-size:20px;color:var(--pink)"><i>★</i></span>
+<span class="star" data-fx="star" data-same style="left:-14px;top:62%;font-size:12px;color:var(--red)"><i>★</i></span>
+</h2>
+<p style="margin:0;font-size:20px;font-weight:500" data-fx="up">I’d love to hear from you.</p>
+<div class="btns" data-fx="up">
+<a class="btn solid" href="https://www.linkedin.com/in/tejasvi-pal">Message me on LinkedIn ↗</a>
+<a class="btn" href="mailto:tejcollabs@epochexplorer.ca">Email</a>
+<a class="btn" href="https://github.com/TejasviPal-1">GitHub ↗</a>
+</div>
+</div>
+<footer class="foot" data-fx="up"><span>© 2026 Tejasvi Pal · Toronto</span></footer>
+</section>
 
-  <script>
-    // Persisted theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const setTheme = (mode) => {
-      if (mode === 'dark') document.documentElement.classList.add('dark');
-      else document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', mode);
-      themeToggle.textContent = mode === 'dark' ? '☀️' : '🌙';
-    };
-    (function initTheme(){
-      const saved = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(saved || (prefersDark ? 'dark' : 'light'));
-    })();
-    themeToggle.addEventListener('click', () => {
-      const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-      setTheme(next);
-    });
+</main></div>
 
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+<script>
+{
+const root = document.documentElement;
+const shots = [...document.querySelectorAll('.shot')];
+const esc = s => s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+document.querySelectorAll('[data-fx=words]').forEach(p => {
+  p.innerHTML = p.textContent.trim().split(/(\s+)/).map(x => /^\s+$/.test(x) ? ' ' : '<span class="w">' + esc(x) + '</span>').join('');
+});
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (reduce) { root.classList.add('static'); }
+else {
+root.classList.add('reel');
+const W = { up: .55, line: .7, star: .3, words: 1, pop: 1, corner: .32, shrink: 1.8, draw: .6 };
+const clamp = (x, a = 0, b = 1) => x < a ? a : x > b ? b : x;
+const out3 = x => 1 - (1 - x) ** 3;
+const back = x => { const c = 1.6; return 1 + (c + 1) * (x - 1) ** 3 + c * (x - 1) ** 2; };
+const inout = x => x < .5 ? 4 * x ** 3 : 1 - ((-2 * x + 2) ** 3) / 2;
 
-    // Projects filter
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projects = document.querySelectorAll('.project');
-    filterBtns.forEach(btn => btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('bg-brand-600','text-white'));
-      btn.classList.add('bg-brand-600','text-white');
-      const tag = btn.dataset.filter;
-      projects.forEach(card => {
-        const tags = card.dataset.tags.split(' ');
-        const show = tag === 'all' || tags.includes(tag);
-        card.classList.toggle('hidden', !show);
-      });
-    }));
+/* timeline per shot: each revealing element gets a slot in the first 80% of the shot */
+shots.forEach(s => {
+  let t = 0, last = null; const items = [];
+  s.querySelectorAll('[data-fx]').forEach(el => {
+    const fx = el.dataset.fx;
+    const words = fx === 'words' ? [...el.querySelectorAll('.w')] : null;
+    const w = words ? Math.max(.8, words.length / 13) : W[fx];
+    let it;
+    if (el.hasAttribute('data-same') && last) { const d = last.b - last.a; it = { el, fx, a: last.a + d * .25, b: last.a + d * .25 + Math.max(w, .3) }; }
+    else { it = { el, fx, a: t, b: t + w }; t += w; }
+    it.words = words; it.e = -1; items.push(it); last = it;
+  });
+  const T = Math.max(t, ...items.map(i => i.b), .001);
+  items.forEach(i => { i.a = i.a / T * .8; i.b = Math.min(.92, i.b / T * .8); });
+  s._items = items;
+  s._len = s.dataset.len ? +s.dataset.len : Math.min(3.4, Math.max(1.05, .7 + T * .26));
+});
 
-    // Modal helpers
-    window.openModal = (title, desc) => {
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalDesc').textContent = desc;
-      const m = document.getElementById('modal');
-      m.classList.remove('hidden');
-      m.classList.add('flex');
-    };
-    window.closeModal = () => {
-      const m = document.getElementById('modal');
-      m.classList.add('hidden');
-      m.classList.remove('flex');
-    };
+const track = document.getElementById('track');
+const topUI = document.getElementById('top-ui');
+const bar = document.getElementById('bar');
+const secs = [0, 1, 2, 3, 4];
+bar.innerHTML = secs.map(() => '<i><b></b></i>').join('');
+const fills = [...bar.querySelectorAll('b')];
+const navLinks = [...document.querySelectorAll('nav a')];
+let vh = innerHeight, vw = innerWidth, starts = [], total = 0, secRange = [];
+function layout() {
+  vh = innerHeight; vw = innerWidth; total = 0; starts = [];
+  shots.forEach(s => { measure(s); s._L = s._len + (s._pan || 0) / vh * .9; starts.push(total); total += s._L * vh; });
+  track.style.height = (total + vh) + 'px';
+  secRange = secs.map(k => { const ix = shots.map((s, i) => +s.dataset.sec === k ? i : -1).filter(i => i >= 0); const a = starts[ix[0]], l = ix[ix.length - 1]; return [a, starts[l] + shots[l]._L * vh]; });
+}
+function measure(s) {
+  s.classList.remove('cut');
+  const inn = s.querySelector('.in');
+  inn.style.setProperty('--fit', 1);
+  s.querySelectorAll('[data-fx=shrink]').forEach(el => el.style.transform = 'none');
+  const cs = getComputedStyle(s);
+  const avail = vh - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - (s.querySelector('.foot') ? 60 : 0);
+  s.classList.remove('tall'); inn.style.setProperty('--pan', '0px');
+  const h0 = inn.offsetHeight;
+  let f = Math.min(1, avail / h0); s._pan = 0;
+  if (f < .86) { f = .9; s.classList.add('tall'); s._pan = h0 * f - avail; }
+  inn.style.setProperty('--fit', f.toFixed(4));
+  s._fit = f;
+  s._items.forEach(it => {
+    it.e = -1;
+    if (it.fx === 'shrink') {
+      const r = it.el.getBoundingClientRect();
+      it.sc = Math.max(vw / r.width, vh / r.height) * 1.02;
+      it.dx = (vw / 2 - (r.left + r.width / 2)) / f;
+      it.dy = (vh / 2 - (r.top + r.height / 2)) / f;
+    }
+  });
+}
+function fx(it, e) {
+  const st = it.el.style;
+  switch (it.fx) {
+    case 'up': { const k = out3(e); st.opacity = k; st.transform = `translateY(${(1 - k) * 22}px)`; break; }
+    case 'line': { st.opacity = clamp(e * 3); st.transform = `translateY(${(1 - back(e)) * 55}%) scale(${.9 + .1 * back(e)})`; break; }
+    case 'pop': { const k = back(e); st.opacity = clamp(e * 2.5); st.transform = `scale(${.84 + .16 * k})`; break; }
+    case 'corner': { const k = back(e); st.opacity = clamp(e * 3); st.transform = `scale(${.4 + .6 * k})`; break; }
+    case 'star': { const k = back(e); st.opacity = clamp(e * 3); st.transform = `scale(${k}) rotate(${(1 - k) * -140}deg)`; break; }
+    case 'draw': { st.transform = `scaleY(${out3(e)})`; break; }
+    case 'shrink': { const k = inout(e); const s = 1 + (it.sc - 1) * (1 - k);
+      st.transform = `translate(${it.dx * (1 - k)}px,${it.dy * (1 - k)}px) scale(${s})`;
+      st.zIndex = k < 1 ? 5 : ''; st.borderWidth = (5 * Math.min(1, k * 1.4)) + 'px'; break; }
+    case 'words': { const n = it.words.length, f = e * n;
+      it.words.forEach((w, j) => { const c = clamp(f - j); w.style.opacity = .16 + .84 * c; w.style.transform = c < 1 ? `translateY(${(1 - c) * .22}em)` : ''; }); break; }
+  }
+}
+function paint(s, p) {
+  s._items.forEach(it => { const e = clamp((p - it.a) / Math.max(.0001, it.b - it.a)); if (Math.abs(e - it.e) > .0005) { it.e = e; fx(it, e); } });
+}
+let cur = null, y = scrollY, introT0 = performance.now(), introDur = 2600, raf = 0;
+function activate(s) {
+  if (cur === s) return;
+  if (cur) cur.classList.remove('on', 'cut');
+  cur = s; s.classList.add('on');
+  measure(s);
+  void s.offsetWidth; s.classList.add('cut');
+  topUI.style.backgroundColor = s.classList.contains('p') ? 'var(--pink)' : '#fff';
+  const sec = +s.dataset.sec;
+  navLinks.forEach((a, i) => a.classList.toggle('cur', i === sec && sec > 0));
+}
+function frame(now) {
+  raf = 0;
+  const target = scrollY;
+  y += (target - y) * .17;
+  if (Math.abs(target - y) < .4) y = target;
+  let i = 0; while (i < starts.length - 1 && starts[i + 1] <= y) i++;
+  const s = shots[i]; activate(s);
+  let p = clamp((y - starts[i]) / (s._L * vh));
+  if (s._pan) s.querySelector('.in').style.setProperty('--pan', (-s._pan * inout(clamp((p - .06) / .86))).toFixed(1) + 'px');
+  const intro = clamp((now - introT0) / introDur);
+  if (i === 0) p = Math.max(p * 1.6, intro);
+  paint(s, p);
+  fills.forEach((b, k) => { const [a, z] = secRange[k]; b.style.transform = `scaleX(${clamp((y - a) / (z - a)).toFixed(4)})`; });
+  if (y !== target || intro < 1) raf = requestAnimationFrame(frame);
+}
+const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+addEventListener('scroll', kick, { passive: true });
+let lw = innerWidth, lh = innerHeight;
+addEventListener('resize', () => { if (innerWidth !== lw || Math.abs(innerHeight - lh) > 120) { lw = innerWidth; lh = innerHeight; layout(); kick(); } });
 
-    // Contact form (mailto fallback demo)
-    const form = document.getElementById('contactForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const copy = document.getElementById('copy').checked;
-      const status = document.getElementById('formStatus');
-
-      // Simple front-end only submit via mailto (replace with Formspree or backend later)
-      const to = 'hello@example.com'; // TODO: replace with your email
-      const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-      const link = `mailto:${to}?subject=${subject}&body=${body}`;
-      window.location.href = link;
-      status.textContent = 'Opening your email client…';
-      if (copy) status.textContent += ' (You selected to receive a copy.)';
-    });
-
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+function jump(id) {
+  const ix = shots.findIndex(s => s.dataset.anchor === id); if (ix < 0) return false;
+  const top = ix === 0 ? 0 : starts[ix] + shots[ix]._L * vh * .86;
+  y = top; scrollTo({ top, behavior: 'instant' }); introT0 = -1e9; kick(); return true;
+}
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (jump(id)) { e.preventDefault(); try { history.replaceState(null, '', '#' + id); } catch (_) {} }
+});
+document.fonts && document.fonts.ready.then(() => { const c = cur; layout(); if (c) { cur = null; activate(c); } kick(); });
+addEventListener('load', () => { const c = cur; layout(); if (c) { cur = null; activate(c); } kick(); });
+layout();
+const h = location.hash.slice(1);
+if (!(h && jump(h))) kick();
+}
+}
+</script>
 </body>
 </html>
