@@ -126,7 +126,7 @@ nav a.cur{text-decoration:underline;text-underline-offset:5px;text-decoration-th
 .reel .shot.on{visibility:visible}
 .reel .shot.cut{animation:cut .34s cubic-bezier(.2,.7,.3,1)}
 @keyframes cut{from{transform:scale(1.05);filter:brightness(1.07)}}
-.reel [data-fx]{will-change:transform,opacity}
+.reel .shot.on [data-fx]{will-change:transform,opacity}
 .static .foot{position:static;margin-top:48px}
 .static .shot{flex-direction:column}
 .static .foot{width:100%;max-width:1240px}
@@ -162,6 +162,8 @@ nav a.cur{text-decoration:underline;text-underline-offset:5px;text-decoration-th
 @media(prefers-reduced-motion:reduce){.static.mobile-intro .name-intro{display:none}}
 @media(max-width:1024px), (any-pointer:coarse){
 .reel .shot.cut{animation:none}
+.reel .shot.on [data-fx]{will-change:auto}
+.reel .shot.on .in{will-change:transform}
 .reel .eng{display:block}
 .reel .eng>.col{margin-bottom:32px}
 .reel .tl{width:100%;min-width:0;padding-left:28px;box-sizing:border-box;gap:32px}
@@ -423,8 +425,10 @@ function activate(s) {
   if (cur === s) return;
   if (cur) cur.classList.remove('on', 'cut');
   cur = s; s.classList.add('on');
-  measure(s);
-  void s.offsetWidth; s.classList.add('cut');
+  if (!phoneReel) {
+    measure(s);
+    void s.offsetWidth; s.classList.add('cut');
+  }
   topUI.style.backgroundColor = s.classList.contains('p') ? 'var(--pink)' : '#fff';
   const sec = +s.dataset.sec;
   navLinks.forEach((a, i) => a.classList.toggle('cur', i === sec && sec > 0));
@@ -434,7 +438,7 @@ function frame(now) {
   const target = scrollY;
   const elapsed = lastFrame ? Math.min(32, now - lastFrame) : 16.67;
   lastFrame = now;
-  const follow = phoneReel ? 1 - Math.exp(-elapsed / 130) : .17;
+  const follow = phoneReel ? 1 - Math.exp(-elapsed / 95) : .17;
   y += (target - y) * follow;
   if (Math.abs(target - y) < .4) y = target;
   const nameProgress = clamp(y / (vh * (phoneReel ? .85 : .55)));
